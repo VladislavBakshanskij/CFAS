@@ -58,17 +58,17 @@
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.martPrice = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.mountAvr = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.maxMoney = new System.Windows.Forms.Label();
             this.srMoney = new System.Windows.Forms.Label();
             this.minMoney = new System.Windows.Forms.Label();
             this.maxChance = new System.Windows.Forms.Label();
             this.srChance = new System.Windows.Forms.Label();
             this.minChance = new System.Windows.Forms.Label();
-            this.maxMoney = new System.Windows.Forms.Label();
-            this.mountAvr = new System.Windows.Forms.Label();
-            this.martPrice = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -317,7 +317,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 29);
+            this.label2.Location = new System.Drawing.Point(14, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 13);
             this.label2.TabIndex = 9;
@@ -387,19 +387,37 @@
             this.panel1.Controls.Add(this.mountAvr);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(3, 4);
+            this.panel1.Location = new System.Drawing.Point(3, 45);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(855, 704);
+            this.panel1.Size = new System.Drawing.Size(855, 663);
             this.panel1.TabIndex = 0;
             // 
-            // label5
+            // martPrice
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 25);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(123, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Ежемесечная выплата";
+            this.martPrice.AutoSize = true;
+            this.martPrice.Location = new System.Drawing.Point(132, 64);
+            this.martPrice.Name = "martPrice";
+            this.martPrice.Size = new System.Drawing.Size(123, 13);
+            this.martPrice.TabIndex = 12;
+            this.martPrice.Text = "Ежемесечная выплата";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Ожидается в марте";
+            // 
+            // mountAvr
+            // 
+            this.mountAvr.AutoSize = true;
+            this.mountAvr.Location = new System.Drawing.Point(132, 25);
+            this.mountAvr.Name = "mountAvr";
+            this.mountAvr.Size = new System.Drawing.Size(123, 13);
+            this.mountAvr.TabIndex = 10;
+            this.mountAvr.Text = "Ежемесечная выплата";
             // 
             // groupBox4
             // 
@@ -415,6 +433,15 @@
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Возможная прибыль в июне";
+            // 
+            // maxMoney
+            // 
+            this.maxMoney.AutoSize = true;
+            this.maxMoney.Location = new System.Drawing.Point(147, 132);
+            this.maxMoney.Name = "maxMoney";
+            this.maxMoney.Size = new System.Drawing.Size(123, 13);
+            this.maxMoney.TabIndex = 9;
+            this.maxMoney.Text = "Ежемесечная выплата";
             // 
             // srMoney
             // 
@@ -461,41 +488,14 @@
             this.minChance.TabIndex = 8;
             this.minChance.Text = "при вероятности";
             // 
-            // maxMoney
+            // label5
             // 
-            this.maxMoney.AutoSize = true;
-            this.maxMoney.Location = new System.Drawing.Point(147, 132);
-            this.maxMoney.Name = "maxMoney";
-            this.maxMoney.Size = new System.Drawing.Size(123, 13);
-            this.maxMoney.TabIndex = 9;
-            this.maxMoney.Text = "Ежемесечная выплата";
-            // 
-            // mountAvr
-            // 
-            this.mountAvr.AutoSize = true;
-            this.mountAvr.Location = new System.Drawing.Point(132, 25);
-            this.mountAvr.Name = "mountAvr";
-            this.mountAvr.Size = new System.Drawing.Size(123, 13);
-            this.mountAvr.TabIndex = 10;
-            this.mountAvr.Text = "Ежемесечная выплата";
-            // 
-            // martPrice
-            // 
-            this.martPrice.AutoSize = true;
-            this.martPrice.Location = new System.Drawing.Point(132, 64);
-            this.martPrice.Name = "martPrice";
-            this.martPrice.Size = new System.Drawing.Size(123, 13);
-            this.martPrice.TabIndex = 12;
-            this.martPrice.Text = "Ежемесечная выплата";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Ожидается в марте";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(123, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Ежемесечная выплата";
             // 
             // Form1
             // 

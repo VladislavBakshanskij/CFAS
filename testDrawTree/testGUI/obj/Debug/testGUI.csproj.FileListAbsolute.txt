@@ -18,3 +18,14 @@ c:\Users\Admin\Documents\GitHub\Tree\testGUI\testGUI\obj\Debug\testGUI.pdb
 c:\Users\Admin\Documents\GitHub\Tree\testGUI\testGUI\bin\Debug\testGUI.exe.config
 c:\Users\Admin\Documents\GitHub\Tree\testGUI\testGUI\bin\Debug\testGUI.exe
 c:\Users\Admin\Documents\GitHub\Tree\testGUI\testGUI\bin\Debug\testGUI.pdb
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\bin\Debug\testGUI.exe.config
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\bin\Debug\testGUI.exe
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\bin\Debug\testGUI.pdb
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.csprojResolveAssemblyReference.cache
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.Form1.resources
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.OMG.resources
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.Properties.Resources.resources
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.csproj.GenerateResource.cache
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.csproj.CoreCompileInputs.cache
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.exe
+C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.pdb
