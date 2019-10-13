@@ -30,8 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OMG));
             this.BarControl = new System.Windows.Forms.Panel();
+            this.MaxButt = new System.Windows.Forms.Button();
+            this.MinButt = new System.Windows.Forms.Button();
+            this.HideButt = new System.Windows.Forms.Button();
+            this.CloseButt = new System.Windows.Forms.Button();
             this.UsersData = new System.Windows.Forms.Panel();
-            this.PaintTree = new System.Windows.Forms.Panel();
             this.countProd = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -54,10 +57,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.CloseButt = new System.Windows.Forms.Button();
-            this.HideButt = new System.Windows.Forms.Button();
-            this.MinButt = new System.Windows.Forms.Button();
-            this.MaxButt = new System.Windows.Forms.Button();
+            this.PaintTree = new System.Windows.Forms.Panel();
             this.BarControl.SuspendLayout();
             this.UsersData.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -85,6 +85,72 @@
             this.BarControl.Name = "BarControl";
             this.BarControl.Size = new System.Drawing.Size(1281, 50);
             this.BarControl.TabIndex = 0;
+            this.BarControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarControl_MouseDown);
+            // 
+            // MaxButt
+            // 
+            this.MaxButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaxButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MaxButt.BackgroundImage")));
+            this.MaxButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.MaxButt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MaxButt.FlatAppearance.BorderSize = 0;
+            this.MaxButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
+            this.MaxButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MaxButt.Location = new System.Drawing.Point(1203, 10);
+            this.MaxButt.Name = "MaxButt";
+            this.MaxButt.Size = new System.Drawing.Size(30, 30);
+            this.MaxButt.TabIndex = 9;
+            this.MaxButt.UseVisualStyleBackColor = true;
+            this.MaxButt.Click += new System.EventHandler(this.MaxButt_Click);
+            // 
+            // MinButt
+            // 
+            this.MinButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MinButt.BackgroundImage")));
+            this.MinButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.MinButt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MinButt.FlatAppearance.BorderSize = 0;
+            this.MinButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
+            this.MinButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinButt.Location = new System.Drawing.Point(1203, 10);
+            this.MinButt.Name = "MinButt";
+            this.MinButt.Size = new System.Drawing.Size(30, 30);
+            this.MinButt.TabIndex = 8;
+            this.MinButt.UseVisualStyleBackColor = true;
+            this.MinButt.Visible = false;
+            this.MinButt.Click += new System.EventHandler(this.MinButt_Click);
+            // 
+            // HideButt
+            // 
+            this.HideButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.HideButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("HideButt.BackgroundImage")));
+            this.HideButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.HideButt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.HideButt.FlatAppearance.BorderSize = 0;
+            this.HideButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
+            this.HideButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HideButt.Location = new System.Drawing.Point(1167, 10);
+            this.HideButt.Name = "HideButt";
+            this.HideButt.Size = new System.Drawing.Size(30, 30);
+            this.HideButt.TabIndex = 7;
+            this.HideButt.UseVisualStyleBackColor = true;
+            this.HideButt.Click += new System.EventHandler(this.HideButt_Click);
+            // 
+            // CloseButt
+            // 
+            this.CloseButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CloseButt.BackgroundImage")));
+            this.CloseButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.CloseButt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CloseButt.FlatAppearance.BorderSize = 0;
+            this.CloseButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
+            this.CloseButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButt.Location = new System.Drawing.Point(1239, 10);
+            this.CloseButt.Name = "CloseButt";
+            this.CloseButt.Size = new System.Drawing.Size(30, 30);
+            this.CloseButt.TabIndex = 6;
+            this.CloseButt.UseVisualStyleBackColor = true;
+            this.CloseButt.Click += new System.EventHandler(this.CloseButt_Click);
             // 
             // UsersData
             // 
@@ -103,15 +169,6 @@
             this.UsersData.Size = new System.Drawing.Size(309, 770);
             this.UsersData.TabIndex = 1;
             this.UsersData.MouseEnter += new System.EventHandler(this.panel1_MouseEnter);
-            // 
-            // PaintTree
-            // 
-            this.PaintTree.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.PaintTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PaintTree.Location = new System.Drawing.Point(309, 50);
-            this.PaintTree.Name = "PaintTree";
-            this.PaintTree.Size = new System.Drawing.Size(972, 770);
-            this.PaintTree.TabIndex = 2;
             // 
             // countProd
             // 
@@ -338,70 +395,14 @@
             this.textBox1.Size = new System.Drawing.Size(276, 29);
             this.textBox1.TabIndex = 17;
             // 
-            // CloseButt
+            // PaintTree
             // 
-            this.CloseButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CloseButt.BackgroundImage")));
-            this.CloseButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.CloseButt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CloseButt.FlatAppearance.BorderSize = 0;
-            this.CloseButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
-            this.CloseButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButt.Location = new System.Drawing.Point(1239, 10);
-            this.CloseButt.Name = "CloseButt";
-            this.CloseButt.Size = new System.Drawing.Size(30, 30);
-            this.CloseButt.TabIndex = 6;
-            this.CloseButt.UseVisualStyleBackColor = true;
-            this.CloseButt.Click += new System.EventHandler(this.CloseButt_Click);
-            // 
-            // HideButt
-            // 
-            this.HideButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.HideButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("HideButt.BackgroundImage")));
-            this.HideButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.HideButt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.HideButt.FlatAppearance.BorderSize = 0;
-            this.HideButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
-            this.HideButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HideButt.Location = new System.Drawing.Point(1167, 10);
-            this.HideButt.Name = "HideButt";
-            this.HideButt.Size = new System.Drawing.Size(30, 30);
-            this.HideButt.TabIndex = 7;
-            this.HideButt.UseVisualStyleBackColor = true;
-            this.HideButt.Click += new System.EventHandler(this.HideButt_Click);
-            // 
-            // MinButt
-            // 
-            this.MinButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MinButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MinButt.BackgroundImage")));
-            this.MinButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.MinButt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MinButt.FlatAppearance.BorderSize = 0;
-            this.MinButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
-            this.MinButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinButt.Location = new System.Drawing.Point(1203, 10);
-            this.MinButt.Name = "MinButt";
-            this.MinButt.Size = new System.Drawing.Size(30, 30);
-            this.MinButt.TabIndex = 8;
-            this.MinButt.UseVisualStyleBackColor = true;
-            this.MinButt.Visible = false;
-            this.MinButt.Click += new System.EventHandler(this.MinButt_Click);
-            // 
-            // MaxButt
-            // 
-            this.MaxButt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaxButt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MaxButt.BackgroundImage")));
-            this.MaxButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.MaxButt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MaxButt.FlatAppearance.BorderSize = 0;
-            this.MaxButt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(62)))), ((int)(((byte)(84)))));
-            this.MaxButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MaxButt.Location = new System.Drawing.Point(1203, 10);
-            this.MaxButt.Name = "MaxButt";
-            this.MaxButt.Size = new System.Drawing.Size(30, 30);
-            this.MaxButt.TabIndex = 9;
-            this.MaxButt.UseVisualStyleBackColor = true;
-            this.MaxButt.Click += new System.EventHandler(this.MaxButt_Click);
+            this.PaintTree.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.PaintTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PaintTree.Location = new System.Drawing.Point(309, 50);
+            this.PaintTree.Name = "PaintTree";
+            this.PaintTree.Size = new System.Drawing.Size(972, 770);
+            this.PaintTree.TabIndex = 2;
             // 
             // OMG
             // 
@@ -414,6 +415,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OMG";
             this.Text = "OMG";
+            this.Load += new System.EventHandler(this.OMG_Load);
             this.BarControl.ResumeLayout(false);
             this.UsersData.ResumeLayout(false);
             this.UsersData.PerformLayout();
