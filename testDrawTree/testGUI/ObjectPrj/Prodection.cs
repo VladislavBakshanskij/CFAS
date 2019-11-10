@@ -7,7 +7,7 @@ namespace testGUI.ObjectPrj {
         public static float MountPrice { get; private set; }
         public static float[] ForecastNii = new float[3];
 
-        public static float[] GetProdection(Bank bank, Company company) {
+        public static float[] DoProdection(Bank bank, Company company) {
             MountPrice = ((bank.precent / 12 * bank.dateAvr) / 100) * bank.money;
             float m = 0;
             

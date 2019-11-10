@@ -31,7 +31,6 @@ C:\Users\Лада\Documents\GitHub\Tree\testDrawTree\testGUI\obj\Debug\testGUI.p
 c:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Debug\testGUI.exe.config
 c:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Debug\testGUI.exe
 c:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Debug\testGUI.pdb
-c:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Debug\testGUI.csprojAssemblyReference.cache
 c:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Debug\testGUI.Form1.resources
 c:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Debug\testGUI.Properties.Resources.resources
 c:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Debug\testGUI.csproj.GenerateResource.cache

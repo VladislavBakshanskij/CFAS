@@ -6,19 +6,9 @@ using testGUI.ObjectPrj;
 
 namespace testGUI.FileWork {
     public sealed class FileReader : FileWorker {
-        //Прикольная реализация с помощью отложенной инициализации объекта не давно прочел про эту штуку
         private static readonly Lazy<FileReader> fileReader = new Lazy<FileReader>(() => new FileReader());
         public static FileReader CreateFileReader => fileReader.Value;
-
-/*      Самый стандартный способ опсания singleton
-       
-        private static FileReader fileReader = null;
-
-        public static FileReader CreateFileReader() {
-            if (fileReader == null) fileReader = new FileReader();
-            return fileReader;
-        }
-*/
+        
         private FileReader() : base() {
             filePath = Environment.CurrentDirectory + @"\input.xlsx";
         }
@@ -28,16 +18,16 @@ namespace testGUI.FileWork {
         /// </summary>
         /// <param name="filePath">Путь к файлу</param>
         /// <returns>Список считанных данных</returns>
-        public List<string> ReadFromFile(string filePath) {
+        public List<string> ReadAllText(string filePath) {
             FilePath = filePath;
-            return ReadFromFile();
+            return ReadAllText();
         }
 
         /// <summary>
         /// Считыват из файла по пути FilePath
         /// </summary>
         /// <returns>Список считанных данных</returns>
-        public List<string> ReadFromFile() {
+        public List<string> ReadAllText() {
             List<string> res = new List<string>();
             Application application = new Application();
             Workbook workbook = application.Workbooks.Open(filePath);

@@ -3,23 +3,25 @@ using System.Collections.Generic;
 
 namespace testGUI.FileWork {
     public abstract class FileWorker {
-        public List<string> CellSourceName = new List<string>() {
-
+        public Dictionary<string, string> CellSourceName = new Dictionary<string, string>() {
+            ["Н"] = "H",
+            ["С"] = "С",
+            ["В"] = "В",
+            ["Прогноз"] = "Прогноз",
+            ["Без"] = "Без покупки",
+            ["Март"] = "Ожидается в марте",
+            ["Июнь"] = "Ожидается в июне",
+            ["Кредит"] = "Кредит",
+            ["Выплата"] = "Выплата",
+            ["Итого"] = "Итого"
         };
-
-        protected string text;
+        
         protected string filePath;
-        protected List<string> dataForFile = new List<string>();
-
-        public string Text {
-            get => text;
-            set {
-                if (value is string) {
-                    text = value;
-                    dataForFile.Add(text);
-                }
-            }
-        }
+        protected List<List<string>> prodectionForFile = new List<List<string>>();
+        protected List<List<string>> chanceForFile = new List<List<string>>();
+        protected List<string> MForFile = new List<string>();
+        protected List<string> forecastNiiForFile = new List<string>();
+        protected List<string> bankData = new List<string>();
 
         public string FilePath {
             get => filePath;
@@ -31,7 +33,6 @@ namespace testGUI.FileWork {
         }
 
         protected FileWorker() {
-            text = "";
         }
     }
 }

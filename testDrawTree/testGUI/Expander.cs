@@ -1,4 +1,6 @@
-﻿namespace testGUI {
+﻿using System;
+
+namespace testGUI {
     public static class Expander {
         public static float[] Reverse(this float[] arr) {
             float[] array = (float[])arr.Clone();

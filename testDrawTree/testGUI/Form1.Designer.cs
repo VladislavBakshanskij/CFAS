@@ -28,7 +28,6 @@
             this.label_forecast = new System.Windows.Forms.Label();
             this.prevCompany = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.remove_forecast = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.add_forecast = new System.Windows.Forms.Button();
@@ -36,11 +35,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label_bank = new System.Windows.Forms.Label();
-            this.prevBank = new System.Windows.Forms.Button();
-            this.nextBank = new System.Windows.Forms.Button();
-            this.remove_bank = new System.Windows.Forms.Button();
-            this.add_bank = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -59,6 +53,8 @@
             this.fullSum = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.notBuyProdectionNode = new System.Windows.Forms.GroupBox();
+            this.notBuyProdectionNode_M = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.notBuyProdectionNodeMaxMoney = new System.Windows.Forms.Label();
             this.notBuyProdectionNodeSrMoney = new System.Windows.Forms.Label();
             this.notBuyProdectionNodeMinMoney = new System.Windows.Forms.Label();
@@ -66,6 +62,8 @@
             this.notBuyProdectionNodeSrChance = new System.Windows.Forms.Label();
             this.notBuyProdectionNodeMinChance = new System.Windows.Forms.Label();
             this.thirdNode = new System.Windows.Forms.GroupBox();
+            this.thirdNode_M = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.thirdNodeMaxMoney = new System.Windows.Forms.Label();
             this.thirdNodeSrMoney = new System.Windows.Forms.Label();
             this.thirdNodeMinMoney = new System.Windows.Forms.Label();
@@ -73,6 +71,8 @@
             this.thirdNodeSrChance = new System.Windows.Forms.Label();
             this.thirdNodeMinChance = new System.Windows.Forms.Label();
             this.firstNode = new System.Windows.Forms.GroupBox();
+            this.firstNode_M = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.firstNodeMaxMoney = new System.Windows.Forms.Label();
             this.firstNodeSrMoney = new System.Windows.Forms.Label();
             this.firstNodeMinMoney = new System.Windows.Forms.Label();
@@ -83,6 +83,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.mountAvr = new System.Windows.Forms.Label();
             this.secondNode = new System.Windows.Forms.GroupBox();
+            this.secondNode_M = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.secondNodeMaxMoney = new System.Windows.Forms.Label();
             this.secondNodeSrMoney = new System.Windows.Forms.Label();
             this.secondNodeMinMoney = new System.Windows.Forms.Label();
@@ -92,14 +94,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.firstNode_M = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.secondNode_M = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.notBuyProdectionNode_M = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.thirdNode_M = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -139,7 +133,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.fullSumLabel);
-            this.splitContainer1.Size = new System.Drawing.Size(1144, 711);
+            this.splitContainer1.Size = new System.Drawing.Size(1144, 658);
             this.splitContainer1.SplitterDistance = 279;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -148,7 +142,6 @@
             this.groupBox5.Controls.Add(this.label_forecast);
             this.groupBox5.Controls.Add(this.prevCompany);
             this.groupBox5.Controls.Add(this.button2);
-            this.groupBox5.Controls.Add(this.remove_forecast);
             this.groupBox5.Controls.Add(this.dataGridView2);
             this.groupBox5.Controls.Add(this.add_forecast);
             this.groupBox5.Location = new System.Drawing.Point(3, 237);
@@ -180,6 +173,7 @@
             this.prevCompany.TabIndex = 21;
             this.prevCompany.Text = "<";
             this.prevCompany.UseVisualStyleBackColor = true;
+            this.prevCompany.Click += new System.EventHandler(this.prevBank_Click);
             // 
             // button2
             // 
@@ -193,20 +187,7 @@
             this.button2.TabIndex = 20;
             this.button2.Text = ">";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // remove_forecast
-            // 
-            this.remove_forecast.BackColor = System.Drawing.SystemColors.Control;
-            this.remove_forecast.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.remove_forecast.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Salmon;
-            this.remove_forecast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSalmon;
-            this.remove_forecast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.remove_forecast.Location = new System.Drawing.Point(61, 149);
-            this.remove_forecast.Name = "remove_forecast";
-            this.remove_forecast.Size = new System.Drawing.Size(41, 28);
-            this.remove_forecast.TabIndex = 6;
-            this.remove_forecast.Text = "-";
-            this.remove_forecast.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.nextBank_Click);
             // 
             // dataGridView2
             // 
@@ -237,7 +218,7 @@
             this.add_forecast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_forecast.Location = new System.Drawing.Point(14, 149);
             this.add_forecast.Name = "add_forecast";
-            this.add_forecast.Size = new System.Drawing.Size(41, 28);
+            this.add_forecast.Size = new System.Drawing.Size(79, 28);
             this.add_forecast.TabIndex = 5;
             this.add_forecast.Text = "+";
             this.add_forecast.UseVisualStyleBackColor = false;
@@ -260,7 +241,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(3, 631);
+            this.button5.Location = new System.Drawing.Point(9, 588);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(265, 59);
             this.button5.TabIndex = 6;
@@ -272,88 +253,15 @@
             // 
             this.groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.groupBox3.Controls.Add(this.label_bank);
-            this.groupBox3.Controls.Add(this.prevBank);
-            this.groupBox3.Controls.Add(this.nextBank);
-            this.groupBox3.Controls.Add(this.remove_bank);
-            this.groupBox3.Controls.Add(this.add_bank);
             this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.Location = new System.Drawing.Point(5, 435);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(265, 181);
+            this.groupBox3.Size = new System.Drawing.Size(265, 147);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Варианты кредитов";
-            // 
-            // label_bank
-            // 
-            this.label_bank.AutoSize = true;
-            this.label_bank.Location = new System.Drawing.Point(183, 143);
-            this.label_bank.Name = "label_bank";
-            this.label_bank.Size = new System.Drawing.Size(24, 13);
-            this.label_bank.TabIndex = 13;
-            this.label_bank.Text = "1/1";
-            // 
-            // prevBank
-            // 
-            this.prevBank.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.prevBank.FlatAppearance.BorderSize = 0;
-            this.prevBank.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.prevBank.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.prevBank.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.prevBank.Location = new System.Drawing.Point(140, 135);
-            this.prevBank.Name = "prevBank";
-            this.prevBank.Size = new System.Drawing.Size(28, 28);
-            this.prevBank.TabIndex = 18;
-            this.prevBank.Text = "<";
-            this.prevBank.UseVisualStyleBackColor = true;
-            this.prevBank.Click += new System.EventHandler(this.prevBank_Click);
-            // 
-            // nextBank
-            // 
-            this.nextBank.FlatAppearance.BorderSize = 0;
-            this.nextBank.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nextBank.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.nextBank.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.nextBank.Location = new System.Drawing.Point(222, 135);
-            this.nextBank.Name = "nextBank";
-            this.nextBank.Size = new System.Drawing.Size(29, 28);
-            this.nextBank.TabIndex = 17;
-            this.nextBank.Text = ">";
-            this.nextBank.UseVisualStyleBackColor = true;
-            this.nextBank.Click += new System.EventHandler(this.nextBank_Click);
-            // 
-            // remove_bank
-            // 
-            this.remove_bank.BackColor = System.Drawing.SystemColors.Control;
-            this.remove_bank.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.remove_bank.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Salmon;
-            this.remove_bank.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSalmon;
-            this.remove_bank.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.remove_bank.Location = new System.Drawing.Point(59, 135);
-            this.remove_bank.Name = "remove_bank";
-            this.remove_bank.Size = new System.Drawing.Size(41, 28);
-            this.remove_bank.TabIndex = 16;
-            this.remove_bank.Text = "-";
-            this.remove_bank.UseVisualStyleBackColor = false;
-            this.remove_bank.Click += new System.EventHandler(this.remove_bank_Click);
-            // 
-            // add_bank
-            // 
-            this.add_bank.BackColor = System.Drawing.SystemColors.Control;
-            this.add_bank.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.add_bank.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
-            this.add_bank.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GreenYellow;
-            this.add_bank.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.add_bank.Location = new System.Drawing.Point(12, 135);
-            this.add_bank.Name = "add_bank";
-            this.add_bank.Size = new System.Drawing.Size(41, 28);
-            this.add_bank.TabIndex = 15;
-            this.add_bank.Text = "+";
-            this.add_bank.UseVisualStyleBackColor = false;
-            this.add_bank.Click += new System.EventHandler(this.add_bank_Click);
+            this.groupBox3.Text = "Кредит";
             // 
             // dataGridView1
             // 
@@ -536,6 +444,24 @@
             this.notBuyProdectionNode.TabStop = false;
             this.notBuyProdectionNode.Text = "Возможная прибыль в июне";
             // 
+            // notBuyProdectionNode_M
+            // 
+            this.notBuyProdectionNode_M.AutoSize = true;
+            this.notBuyProdectionNode_M.Location = new System.Drawing.Point(196, 131);
+            this.notBuyProdectionNode_M.Name = "notBuyProdectionNode_M";
+            this.notBuyProdectionNode_M.Size = new System.Drawing.Size(123, 13);
+            this.notBuyProdectionNode_M.TabIndex = 15;
+            this.notBuyProdectionNode_M.Text = "Ежемесечная выплата";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(23, 131);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Математическое ожидание";
+            // 
             // notBuyProdectionNodeMaxMoney
             // 
             this.notBuyProdectionNodeMaxMoney.AutoSize = true;
@@ -607,6 +533,24 @@
             this.thirdNode.TabStop = false;
             this.thirdNode.Text = "Возможная прибыль в июне";
             // 
+            // thirdNode_M
+            // 
+            this.thirdNode_M.AutoSize = true;
+            this.thirdNode_M.Location = new System.Drawing.Point(179, 131);
+            this.thirdNode_M.Name = "thirdNode_M";
+            this.thirdNode_M.Size = new System.Drawing.Size(123, 13);
+            this.thirdNode_M.TabIndex = 13;
+            this.thirdNode_M.Text = "Ежемесечная выплата";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 131);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(146, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Математическое ожидание";
+            // 
             // thirdNodeMaxMoney
             // 
             this.thirdNodeMaxMoney.AutoSize = true;
@@ -677,6 +621,24 @@
             this.firstNode.TabIndex = 10;
             this.firstNode.TabStop = false;
             this.firstNode.Text = "Возможная прибыль в июне";
+            // 
+            // firstNode_M
+            // 
+            this.firstNode_M.AutoSize = true;
+            this.firstNode_M.Location = new System.Drawing.Point(179, 132);
+            this.firstNode_M.Name = "firstNode_M";
+            this.firstNode_M.Size = new System.Drawing.Size(123, 13);
+            this.firstNode_M.TabIndex = 11;
+            this.firstNode_M.Text = "Ежемесечная выплата";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 132);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(146, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Математическое ожидание";
             // 
             // firstNodeMaxMoney
             // 
@@ -776,6 +738,24 @@
             this.secondNode.TabStop = false;
             this.secondNode.Text = "Возможная прибыль в июне";
             // 
+            // secondNode_M
+            // 
+            this.secondNode_M.AutoSize = true;
+            this.secondNode_M.Location = new System.Drawing.Point(196, 132);
+            this.secondNode_M.Name = "secondNode_M";
+            this.secondNode_M.Size = new System.Drawing.Size(123, 13);
+            this.secondNode_M.TabIndex = 13;
+            this.secondNode_M.Text = "Ежемесечная выплата";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(23, 132);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(146, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Математическое ожидание";
+            // 
             // secondNodeMaxMoney
             // 
             this.secondNodeMaxMoney.AutoSize = true;
@@ -841,86 +821,18 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "|*.xlsx";
             // 
-            // firstNode_M
+            // saveFileDialog1
             // 
-            this.firstNode_M.AutoSize = true;
-            this.firstNode_M.Location = new System.Drawing.Point(179, 132);
-            this.firstNode_M.Name = "firstNode_M";
-            this.firstNode_M.Size = new System.Drawing.Size(123, 13);
-            this.firstNode_M.TabIndex = 11;
-            this.firstNode_M.Text = "Ежемесечная выплата";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 132);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Математическое ожидание";
-            // 
-            // secondNode_M
-            // 
-            this.secondNode_M.AutoSize = true;
-            this.secondNode_M.Location = new System.Drawing.Point(196, 132);
-            this.secondNode_M.Name = "secondNode_M";
-            this.secondNode_M.Size = new System.Drawing.Size(123, 13);
-            this.secondNode_M.TabIndex = 13;
-            this.secondNode_M.Text = "Ежемесечная выплата";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 132);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(146, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Математическое ожидание";
-            // 
-            // notBuyProdectionNode_M
-            // 
-            this.notBuyProdectionNode_M.AutoSize = true;
-            this.notBuyProdectionNode_M.Location = new System.Drawing.Point(196, 131);
-            this.notBuyProdectionNode_M.Name = "notBuyProdectionNode_M";
-            this.notBuyProdectionNode_M.Size = new System.Drawing.Size(123, 13);
-            this.notBuyProdectionNode_M.TabIndex = 15;
-            this.notBuyProdectionNode_M.Text = "Ежемесечная выплата";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 131);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Математическое ожидание";
-            // 
-            // thirdNode_M
-            // 
-            this.thirdNode_M.AutoSize = true;
-            this.thirdNode_M.Location = new System.Drawing.Point(179, 131);
-            this.thirdNode_M.Name = "thirdNode_M";
-            this.thirdNode_M.Size = new System.Drawing.Size(123, 13);
-            this.thirdNode_M.TabIndex = 13;
-            this.thirdNode_M.Text = "Ежемесечная выплата";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 131);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(146, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Математическое ожидание";
+            this.saveFileDialog1.Filter = "|*.xlsx";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1144, 711);
+            this.ClientSize = new System.Drawing.Size(1144, 658);
             this.Controls.Add(this.splitContainer1);
             this.MainMenuStrip = this.menu;
             this.Name = "Form1";
@@ -934,7 +846,6 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -986,15 +897,9 @@
         private System.Windows.Forms.Button add_forecast;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.Button remove_forecast;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.Button prevBank;
-        private System.Windows.Forms.Button nextBank;
-        private System.Windows.Forms.Button remove_bank;
-        private System.Windows.Forms.Button add_bank;
-        private System.Windows.Forms.Label label_bank;
         private System.Windows.Forms.Button prevCompany;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label_forecast;

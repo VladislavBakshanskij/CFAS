@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using testGUI.ObjectPrj;
 using testGUI.FileWork;
@@ -17,15 +11,14 @@ namespace testGUI {
         private static Company company = null;
         private static List<Company> companies = new List<Company>();
         private static List<float[]> prodecties = new List<float[]>();
-        private List<string> dataFromFile = null;
+
         private List<List<string>> dataInput = null;
-        private bool init = false;
+        private List<List<string>> listIteration;
         private string textGroup = "";
         private string textGroupLabel = "";
-        private int iterator = 0;//смотрим на банк
-
-        //мям
-        private List<List<string>> listBank = new List<List<string>>();
+        private int iterator = 0;
+        private FileReader fileReader = FileReader.CreateFileReader;
+        private FileWriter fileWriter = FileWriter.CreateFileWriter;
 
         public Form1() {
             InitializeComponent();
@@ -33,11 +26,9 @@ namespace testGUI {
             textGroup = this.firstNode.Text;
             textGroupLabel = this.firstNodeSrChance.Text;
 
-            listBank.Add(new List<string>(4));//capacity
-
-            dataGridView1.RowCount = 4;//варианты кредитов
-            dataGridView2.RowCount = 5;//прогнозные значения
-            dataGridView3.RowCount = 3; //прогнозная цена
+            dataGridView1.RowCount = 4;
+            dataGridView2.RowCount = 5;
+            dataGridView3.RowCount = 3;
 
             dataGridView3.RowHeadersWidth = 70;
             dataGridView2.RowHeadersWidth = 70;
@@ -50,7 +41,7 @@ namespace testGUI {
                 dataGridView2.Rows[i + 1].HeaderCell.Value = string.Format("{0}", header_value[i]);
             }
             dataGridView2.Rows[0].HeaderCell.Value = string.Format("{0}", "Имя");
-            dataGridView2[0, 0].Value = "Прогноз 1";
+            dataGridView2[0, 0].Value = "Прогноз";
             dataGridView2.Rows[4].HeaderCell.Value = string.Format("{0}", "Цена");
 
 
@@ -60,66 +51,48 @@ namespace testGUI {
             dataGridView1.Rows[2].HeaderCell.Value = string.Format("{0}", "Ставка");
             dataGridView1.Rows[3].HeaderCell.Value = string.Format("{0}", "Срок(мес)");
 
-            this.dataGridView1.Click += new EventHandler(pictureBox1_Click);
-
             this.secondNode.Visible = secondNodeMinChance.Visible = secondNodeSrChance.Visible = secondNodeMaxChance.Visible =
-                secondNodeMinMoney.Visible = secondNodeSrMoney.Visible = secondNodeMaxMoney.Visible = label4.Visible = 
+                secondNodeMinMoney.Visible = secondNodeSrMoney.Visible = secondNodeMaxMoney.Visible = label4.Visible =
                 label5.Visible = mountAvr.Visible = martPrice.Visible = this.fullSumLabel.Visible = this.fullSum.Visible = false;
 
-            this.prevCompany.Click += new EventHandler(prevBank_Click);
             this.add_forecast.Click += new EventHandler(add_bank_Click);
         }
 
         private void button5_Click(object sender, EventArgs e) {
             try {
-                if ((company == null || bank == null) && dataFromFile == null) {
-                    //Input
+                if (company == null || bank == null) {
+                    fileWriter.Clear();
+                  
                     bank = new Bank() {
-                        money = Convert.ToSingle(dataGridView1.Rows[1].Cells[0].Value.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." }),
-                        precent = Convert.ToSingle(dataGridView1.Rows[2].Cells[0].Value.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." }),
-                        dateAvr = Convert.ToSingle(dataGridView1.Rows[3].Cells[0].Value.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." })
+                        money = Convert.ToSingle(dataGridView1.Rows[1].Cells[0].Value.ToString().Replace(".", ",")),
+                        precent = Convert.ToSingle(dataGridView1.Rows[2].Cells[0].Value.ToString().Replace(".", ",")),
+                        dateAvr = Convert.ToSingle(dataGridView1.Rows[3].Cells[0].Value.ToString().Replace(".", ","))
                     };
 
-                    Company.CountProduct = Convert.ToSingle(this.textBox2.Text);
+                    Company.CountProduct = Convert.ToSingle(this.textBox2.Text.Replace(".", ","));
                     for (int i = 0; i < Company.Prices.Length; i++) {
-                        Company.Prices[i] = Convert.ToSingle(this.dataGridView3.Rows[i].Cells[0].Value.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." });
-                        Prodection.ForecastNii[i] = Convert.ToSingle(dataInput[0][i + 1], new NumberFormatInfo() { NumberDecimalSeparator = "." });
+                        Company.Prices[i] = Convert.ToSingle(this.dataGridView3.Rows[i].Cells[0].Value.ToString().Replace(".", ","));
+                        Prodection.ForecastNii[i] = Convert.ToSingle(listIteration[0][i].Replace(".", ","));
                     }
 
                     company = new Company() {
                         changes = new float[] {
-                            Convert.ToSingle(dataGridView2.Rows[1].Cells[0].Value.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." }),
-                            Convert.ToSingle(dataGridView2.Rows[2].Cells[0].Value.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." }),
-                            Convert.ToSingle(dataGridView2.Rows[3].Cells[0].Value.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." }),
+                            Convert.ToSingle(dataGridView2.Rows[1].Cells[0].Value.ToString().Replace(".", ",")),
+                            Convert.ToSingle(dataGridView2.Rows[2].Cells[0].Value.ToString().Replace(".", ",")),
+                            Convert.ToSingle(dataGridView2.Rows[3].Cells[0].Value.ToString().Replace(".", ",")),
                         }
-                    };
-                } else if (company == null || bank == null) {
-                    //File
-                    company = new Company();
-                    Company.CountProduct = Convert.ToSingle(dataFromFile[1]);
-                    for (int i = 0; i < Company.Prices.Length; i++) {
-                        Company.Prices[i] = Convert.ToSingle(dataFromFile[i + 2]);
-                        Prodection.ForecastNii[i] = Convert.ToSingle(dataFromFile[i + 5]);
-                        company.changes[i] = Convert.ToSingle(dataFromFile[i + 9]);
-                    }
-
-                    bank = new Bank() {
-                        money = Convert.ToSingle(dataFromFile[dataFromFile.Count - 3]),
-                        dateAvr = Convert.ToSingle(dataFromFile[dataFromFile.Count - 2]),
-                        precent = Convert.ToSingle(dataFromFile[dataFromFile.Count - 1])
                     };
                 }
 
-                //Name group
                 this.firstNode.Text = $"{textGroup} при {Prodection.ForecastNii[0]}";
                 this.secondNode.Text = $"{textGroup} при {Prodection.ForecastNii[1]}";
                 this.thirdNode.Text = $"{textGroup} при {Prodection.ForecastNii[2]}";
                 this.notBuyProdectionNode.Text = $"{textGroup} без покупки прогнозов";
-            } /* Отлавливание исключений */catch (NullReferenceException ex) {
-                MessageBox.Show(ex.Message);
+            } catch (NullReferenceException ex) {
+                MessageBox.Show("Ошибка:\n " + ex);
                 return;
             } catch (FormatException ex) {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ошибка:\n " + ex);
                 return;
             }
 
@@ -130,17 +103,11 @@ namespace testGUI {
             companies.Add(company);
             InsertChance();
             Calculate();
-
-            company = null;
+            companies.Clear();
+            prodecties.Clear();
+            Prodection.M.Clear();
             bank = null;
-            init = false;
-
-            companies?.Clear();
-            prodecties?.Clear();
-            dataInput?.Clear();
-            dataFromFile?.Clear();
-            dataInput = null;
-            dataFromFile = null;
+            company = null;
         }
 
         private void InsertChance() {
@@ -164,8 +131,17 @@ namespace testGUI {
 
         private void Calculate() {
             if (company == null || bank == null || !company.CheckChance) return;
-            foreach (var item in companies)
-                prodecties.Add(Prodection.GetProdection(bank, item).Sort());
+            
+            foreach (var item in companies) {
+                prodecties.Add(Prodection.DoProdection(bank, item).Sort());
+            }
+
+            DrawingTree.prodections = new List<Label>();
+            for (int i = 0; i < prodecties[0].Length; ++i) {
+                DrawingTree.prodections.Add(new Label() { Text = prodecties[0][i].ToString() });
+            }
+            
+            #region Node
             //
             // ----------------------------------------------------------------------------
             //
@@ -173,7 +149,16 @@ namespace testGUI {
             this.notBuyProdectionNodeMinChance.Text = textGroupLabel + " " + companies[1].changes[1].ToString();
             this.notBuyProdectionNodeSrChance.Text = textGroupLabel + " " + companies[1].changes[2].ToString();
 
-            this.notBuyProdectionNodeMaxMoney.Text =  prodecties[1][0].ToString();
+            //Left
+            List<Label> lst = new List<Label>();
+            for (int i = 0; i < companies[1].changes.Length; ++i) {
+                lst.Add(new Label() { Text = companies[1].changes[i].ToString() });
+            }
+            DrawingTree.chancies.Add(lst);
+            lst = new List<Label>();
+            //
+
+            this.notBuyProdectionNodeMaxMoney.Text = prodecties[1][0].ToString();
             this.notBuyProdectionNodeMinMoney.Text = prodecties[1][1].ToString();
             this.notBuyProdectionNodeSrMoney.Text = prodecties[1][2].ToString();
             //
@@ -182,6 +167,12 @@ namespace testGUI {
             this.firstNodeMaxChance.Text = textGroupLabel + " " + companies[0].changes[0].ToString();
             this.firstNodeSrChance.Text = textGroupLabel + " " + companies[0].changes[1].ToString();
             this.firstNodeMinChance.Text = textGroupLabel + " " + companies[0].changes[2].ToString();
+
+            for (int i = 0; i < companies[0].changes.Length; ++i) {
+                lst.Add(new Label() { Text = companies[0].changes[i].ToString() });
+            }
+            DrawingTree.chancies.Add(lst);
+            lst = new List<Label>();
 
             this.firstNodeMaxMoney.Text = prodecties[0][0].ToString();
             this.firstNodeSrMoney.Text = prodecties[0][1].ToString();
@@ -192,6 +183,12 @@ namespace testGUI {
             this.secondNodeMaxChance.Text = textGroupLabel + " " + companies[2].changes[0].ToString();
             this.secondNodeMinChance.Text = textGroupLabel + " " + companies[2].changes[1].ToString();
             this.secondNodeSrChance.Text = textGroupLabel + " " + companies[2].changes[2].ToString();
+            
+            for (int i = 0; i < companies[2].changes.Length; ++i) {
+                lst.Add(new Label() { Text = companies[2].changes[i].ToString() });
+            }
+            DrawingTree.chancies.Add(lst);
+            lst = new List<Label>();
 
             this.secondNodeMaxMoney.Text = prodecties[2][0].ToString();
             this.secondNodeMinMoney.Text = prodecties[2][1].ToString();
@@ -203,185 +200,198 @@ namespace testGUI {
             this.thirdNodeSrChance.Text = textGroupLabel + " " + companies[3].changes[1].ToString();
             this.thirdNodeMinChance.Text = textGroupLabel + " " + companies[3].changes[2].ToString();
 
+            for (int i = 0; i < companies[3].changes.Length; ++i) {
+                lst.Add(new Label() { Text = companies[3].changes[i].ToString() });
+            }
+            DrawingTree.chancies.Add(lst);
+
             this.thirdNodeMaxMoney.Text = prodecties[3][0].ToString();
             this.thirdNodeSrMoney.Text = prodecties[3][1].ToString();
             this.thirdNodeMinMoney.Text = prodecties[3][2].ToString();
             //
             // ----------------------------------------------------------------------------
             //
+            #endregion
 
             this.firstNode_M.Text = bank.money > Prodection.M[3] ? bank.money.ToString() : Prodection.M[3].ToString();
+            DrawingTree.M.Add(firstNode_M);
+
             this.secondNode_M.Text = bank.money > Prodection.M[2] ? bank.money.ToString() : Prodection.M[2].ToString();
-            this.thirdNode_M.Text = this.notBuyProdectionNode_M.Text = this.notBuyProdectionLabel.Text = bank.money > Prodection.M[1] ? bank.money.ToString() : Prodection.M[1].ToString();
+            DrawingTree.M.Add(secondNode_M);
+
+            this.thirdNode_M.Text = this.notBuyProdectionNode_M.Text 
+                            = this.notBuyProdectionLabel.Text = bank.money > Prodection.M[1] ? bank.money.ToString() : Prodection.M[1].ToString();
+            DrawingTree.M.Add(thirdNode_M);
 
             this.mountAvr.Text = Prodection.MountPrice.ToString();
             this.martPrice.Text = bank.money.ToString();
 
-            /*float m1 = Convert.ToSingle(this.firstNode_M.Text);
-            float m2 = Convert.ToSingle(this.secondNode_M.Text);
-            float m3 = Convert.ToSingle(this.thirdNode_M.Text);
+            float prodectionMoney = bank.money + Convert.ToSingle(listIteration[0][listIteration[0].Count - 1].Replace(".", ",")) 
+                                + Convert.ToSingle(this.dataGridView2.Rows[dataGridView2.RowCount - 1].Cells[0].Value.ToString().Replace(".", ","));
+            this.notBuyProdectionLabel.Text = bank.money.ToString();
+            this.fullSum.Text = prodectionMoney.ToString();
 
-            float half = (m1 + m2 + m3) / 3;*/
-            float prodectionMoney = bank.money + (dataFromFile == null ? Convert.ToSingle(dataInput[0][4], new NumberFormatInfo() { NumberDecimalSeparator = "." }) : Convert.ToSingle(dataFromFile[8]));
-            this.notBuyProdectionLabel.Text = this.fullSum.Text = prodectionMoney.ToString();
+            DrawingTree.FullSum = fullSum;
+            DrawingTree.Root = this.notBuyProdectionLabel;
+
+            Write();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e) {
-           /* DrawingTree drawingTree = new DrawingTree();
-            DrawingTree.draw = true;
-            drawingTree.Show();*/
+        private void Write() {
+            var lst = new List<string>();
+            foreach (float[] values in prodecties) {
+                lst = new List<string>();
+                foreach (float value in values) {
+                    lst.Add(value.ToString());
+                }
+                fileWriter.AddProdection(lst);
+            }
+
+            foreach (Company c in companies) {
+                lst = new List<string>();
+                foreach (float chance in c.changes) {
+                    lst.Add(chance.ToString());
+                }
+                fileWriter.AddChance(lst);
+            }
+
+            foreach (float forecast in Prodection.ForecastNii) {
+                fileWriter.AddForecastNii(forecast.ToString());
+            }
+
+            fileWriter.AddBankData(bank.money.ToString());
+            fileWriter.AddBankData(Prodection.MountPrice.ToString());
+            fileWriter.AddBankData(this.fullSum.Text);
+
+            fileWriter.AddM(this.firstNode_M.Text);
+            fileWriter.AddM(this.secondNode_M.Text);
+            fileWriter.AddM(this.thirdNode_M.Text);
+            fileWriter.AddM(this.notBuyProdectionNode_M.Text);
         }
 
-        // <3 <3 <3
         private void add_bank_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
+            if (iterator >= 1) return;
             if (btn.Name.Equals(add_forecast.Name)) {
-                if (!init) {
-                    dataInput = new List<List<string>>();
-                    var list = new List<string>();
-                    foreach (DataGridViewRow data in this.dataGridView2.Rows) {
-                        list.Add(data.Cells[0].Value.ToString());
-                        data.Cells[0].Value = "";
-                    }
-                    dataInput.Add(list);
-                    for (int i = 0; i < 3; i++) {
-                        Prodection.ForecastNii[i] = Convert.ToSingle(list[i + 1], new NumberFormatInfo() { NumberDecimalSeparator = "." });
-                    }
-                    init = true;
+                dataInput = new List<List<string>>();
+                listIteration = listIteration ?? new List<List<string>>();
+                var list = new List<string>();
+                for (int i = 1; i < 5; ++i) {
+                    list.Add(dataGridView2.Rows[i].Cells[0].Value.ToString());
+                    dataGridView2.Rows[i].Cells[0].Value = "";
                 }
-                return;
-            }
-
-            if (iterator < listBank.Count - 1) iterator = listBank.Count - 1;//это если мы где-то в жопке и создаем новый столбик
-            if (NotNullValue(1) == 1) {
-                for (int i = 0; i < 4; i++) listBank[iterator].Add(dataGridView1[0, i].Value.ToString());
-                listBank.Add(new List<string>(4));
-                WhereAmI(listBank.Count, listBank.Count, 1);
-                iterator++;
-                ClearDGV(1);
-                dataGridView1[0, 0].Value = "Банк " + listBank.Count;
+                dataInput.Add(list);
+                listIteration.Clear();
+                listIteration.Add(list);
+                for (int i = 0; i < 3; i++) {
+                    Prodection.ForecastNii[i] = Convert.ToSingle(list[i + 1].Replace(".", ","));
+                }
+                ++iterator;
+                WhereAmI(iterator + 1, dataInput.Count + 1);
             }
         }
-
-        private void remove_bank_Click(object sender, EventArgs e) {
-            DialogResult DeleteBank = MessageBox.Show("Вы действительно хотите удалить вариант кредита?", "Удаление кредита", MessageBoxButtons.YesNo);
-            if (DeleteBank == DialogResult.Yes) {
-                if (listBank.Count > 2 && iterator != listBank.Count - 1) {
-                    listBank.RemoveAt(iterator);
-                    for (int i = 0; i < 4; i++)
-                        dataGridView1[0, i].Value = listBank[iterator][i];
-                } else if (listBank.Count == 2 && iterator == 0) {
-                    listBank.RemoveAt(iterator);
-                    for (int i = 0; i < 4; i++)
-                        dataGridView1[0, i].Value = listBank[iterator][i];
-                } else if (iterator == listBank.Count - 1 && listBank.Count > 1) {
-                    listBank.RemoveAt(iterator);
-                    for (int i = 0; i < 4; i++)
-                        dataGridView1[0, i].Value = listBank[iterator][i];
-                    iterator--;
-                } //ЗА ПРЕДЕЛАМИ ИНДЕКС, ТВОЮ МАТЬ!!!  почему ему не нравится [iterator--]? тк на каждой итерации цикла переменая дикрментируется
-                else ClearDGV(1);
-                WhereAmI(iterator + 1, listBank.Count, 1);
-            }
-        }
-
+        
         private void nextBank_Click(object sender, EventArgs e) {
-            //это делал ты, я это оставлю здесь ~ <3 
+            Next();
+        }
 
-            /* if (iterator + 1 >= listBank.Count - 1) {
-                 for (int i = 0; i < 4; i++) this.dataGridView1[0, i].Value = "";  ???????????????
-             } else {*/
-            if (listBank.Count == 0) MessageBox.Show("Внесен только один кредит!");
-            else if (NotNullValue(1) == 1 && iterator != listBank.Count - 1) {
-                for (int i = 0; i < 4; i++)
-                    listBank[iterator].Insert(i, dataGridView1[0, i].Value.ToString());//не хочет без tostr()
-                while (listBank[iterator].Count > 4) listBank[iterator].RemoveAt(4);
-                ClearDGV(1);
-                iterator++;
-                WhereAmI(iterator + 1, listBank.Count, 1);
-                for (int i = 0; i < 4; i++) dataGridView1[0, i].Value = listBank[iterator][i];
+        private void Next() {
+            if (dataInput == null) return;
+            if (!IsNull(2) && iterator != dataInput.Count) {
+                var lst = new List<string>();
+                for (int i = 0; i < 4; ++i) {
+                    lst.Add(dataGridView2.Rows[i + 1].Cells[0].Value.ToString());
+                }
+                for (int i = 0; i < listIteration[iterator].Count; ++i) dataGridView2.Rows[i + 1].Cells[0].Value = listIteration[iterator][i];
+                dataGridView2.Rows[0].Cells[0].Value = "Прогноз";
+                listIteration.RemoveAt(iterator);
+                listIteration.Insert(iterator, lst);
+                WhereAmI(iterator + 2, listIteration.Count + 1);
+                ++iterator;
             } else MessageBox.Show("Вы дошли до конца списка!");
+        }
 
+        private void Prev() {
+            if (dataInput.Count > 0 && iterator == 0) MessageBox.Show("Вы дошли до начала списка!");
+            else if (!IsNull(2)) {
+                var lst = new List<string>();
+                for (int i = 0; i < 4; i++) {
+                    lst.Add(dataGridView2.Rows[i + 1].Cells[0].Value.ToString());
+                }
+                for (int i = 0; i < listIteration[iterator - 1].Count; ++i) {
+                    dataGridView2.Rows[i + 1].Cells[0].Value = listIteration[iterator - 1][i];
+                }
+                dataGridView2.Rows[0].Cells[0].Value = "Прогноз";
+                listIteration.RemoveAt(iterator - 1);
+                listIteration.Insert(iterator - 1, lst);
+                WhereAmI(iterator, listIteration.Count + 1);
+                --iterator;
+            }
         }
 
         private void prevBank_Click(object sender, EventArgs e) {
-            Button btn = (Button)sender;
-            if (listBank.Count > 0 && iterator == 0) MessageBox.Show("Вы дошли до начала списка!");
-            else if (NotNullValue(1) == 1) {
-                for (int i = 0; i < 4; i++)
-                    listBank[iterator].Insert(i, dataGridView1[0, i].Value.ToString());//не хочет без tostr()
-                while (listBank[iterator].Count > 4) listBank[iterator].RemoveAt(4);
-                ClearDGV(1);
-                iterator--;
-                WhereAmI(iterator + 1, listBank.Count, 1);
-                for (int i = 0; i < 4; i++) dataGridView1[0, i].Value = listBank[iterator][i];
-            }
+            Prev();
         }
 
-        //еще больше switch/case <3 <3 <3
         public void ClearDGV(int x) {
             switch (x) {
                 case 1:
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                         row.Cells[0].Value = "";
                     break;
-                case 2: 
-                    foreach (DataGridViewRow row in dataGridView2.Rows)
-                        row.Cells[0].Value = "";
-                    break;
-                case 3:
-                    foreach (DataGridViewRow row in dataGridView3.Rows)
-                        row.Cells[0].Value = "";
-                    break;
-            }
-        }
-
-        public int NotNullValue(int x) {
-            int z = 1;
-            switch (x) {
-                case 1:
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                        if (row.Cells[0].Value == null || row.Cells[0].Value.ToString() == "") {
-                            MessageBox.Show("Заполните пустые значения в таблице кредитов!");
-                            z = 0;
-                            break;
-                        }
-                    break;
                 case 2:
                     foreach (DataGridViewRow row in dataGridView2.Rows)
-                        if (row.Cells[0].Value == null || row.Cells[0].Value.ToString() == "") {
-                            MessageBox.Show("Заполните пустые значения в таблице прогнозов!");
-                            z = 0;
-                            break;
-                        }
+                        row.Cells[0].Value = "";
                     break;
                 case 3:
                     foreach (DataGridViewRow row in dataGridView3.Rows)
-                        if (row.Cells[0].Value == null || row.Cells[0].Value.ToString() == "") {
-                            MessageBox.Show("Заполните пустые значения в таблице прогнозных цен!");
-                            z = 0;
-                            break;
-                        }
+                        row.Cells[0].Value = "";
                     break;
             }
-            return z;
         }
 
-        public void WhereAmI(int x, int y, int z) {
-            switch (z) {
-                case 1: label_bank.Text = x + "/" + y; break;
-                case 2: label_forecast.Text = x + "/" + y; break;
+        public bool IsNull(int x) {
+            switch (x) {
+                case 1:
+                    foreach (DataGridViewRow row in dataGridView1.Rows) {
+                        if (row.Cells[0].Value == null || row.Cells[0].Value.ToString() == "") {
+                            MessageBox.Show("Заполните пустые значения в таблице кредитов!");
+                            return true;
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (DataGridViewRow row in dataGridView2.Rows) {
+                        if (row.Cells[0].Value == null || row.Cells[0].Value.ToString() == "") {
+                            MessageBox.Show("Заполните пустые значения в таблице прогнозов!");
+                            return true;
+                        }
+                    }
+                    break;
+                case 3:
+                    foreach (DataGridViewRow row in dataGridView3.Rows) {
+                        if (row.Cells[0].Value == null || row.Cells[0].Value.ToString() == "") {
+                            MessageBox.Show("Заполните пустые значения в таблице прогнозных цен!");
+                            return true;
+                        }
+                    }
+                    break;
             }
+            return false;
+        }
+
+        public void WhereAmI(int x, int y) {
+            label_forecast.Text = x + "/" + y;
         }
 
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 OpenFile(this.openFileDialog1.FileName);
         }
-        
+
         private void OpenFile(string FileName) {
-            FileReader fileReader = FileReader.CreateFileReader;
-            dataFromFile = fileReader.ReadFromFile(FileName);
+            List<string> dataFromFile = fileReader.ReadAllText(FileName);
+            FillForm(dataFromFile);
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -394,9 +404,53 @@ namespace testGUI {
         }
 
         private void SaveFile(string fileName) {
-            FileWriter fileWriter = FileWriter.CreateFileWriter;
-            //Чуть позже выгрузка
             fileWriter.Save(fileName);
+        }
+
+        private void FillForm(List<string> data) {
+            if (data == null || data.Count == 0) return;
+            int position = 0;
+            textBox1.Text = data[0];
+            ++position;
+
+            textBox2.Text = data[1];
+            ++position;
+
+            List<string> lst = new List<string>();
+            dataInput = dataInput ?? new List<List<string>>();
+            listIteration = listIteration ?? new List<List<string>>();
+
+            //Price
+            for (int i = 0; i < 3; ++i, ++position) {
+                dataGridView3.Rows[i].Cells[0].Value = data[position];
+            }
+
+            //ForecastNii
+            for (int i = 0; i < 4; ++i, ++position) lst.Add(data[position]);
+            dataInput?.Add(lst);
+            ++iterator;
+            WhereAmI(iterator + 1, dataInput.Count + 1);
+            ClearDGV(2);
+
+            this.dataGridView2.Rows[0].Cells[0].Value = "Прогноз";
+            //Chance Product
+            for (int i = 0; i < 3; ++i, ++position) {
+                this.dataGridView2.Rows[i + 1].Cells[0].Value = data[position];
+            }
+            this.dataGridView2.Rows[4].Cells[0].Value = "0";
+
+            if (position < data.Count) {
+                for (int i = 0; i < 3; ++i, ++position) {
+                    this.dataGridView1.Rows[i + 1].Cells[0].Value = data[position];
+                }
+            }
+            listIteration.AddRange(dataInput);
+        }
+
+        private void drawTree_Click(object sender, EventArgs e) {
+            DrawingTree drawing = new DrawingTree();
+            DrawingTree.draw = true;
+            drawing.Show();
         }
     }
 }
