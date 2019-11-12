@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Release\testGUI.exe.config
 C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Release\testGUI.exe
 C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Release\testGUI.pdb
@@ -10,16 +9,3 @@ C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Rel
 C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.exe
 C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.pdb
-=======
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Release\testGUI.exe.config
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Release\testGUI.exe
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\bin\Release\testGUI.pdb
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.csprojAssemblyReference.cache
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.DrawingTree.resources
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.Form1.resources
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.Properties.Resources.resources
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.csproj.GenerateResource.cache
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.csproj.CoreCompileInputs.cache
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.exe
-C:\Users\Admin\Documents\Projects\Game\testDrawTree\testDrawTree\testGUI\obj\Release\testGUI.pdb
->>>>>>> 0a5692549836ce0f8947e204bed74904d7ff13f2
