@@ -1,7 +1,0 @@
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\TestVersion\TestVersion\bin\Debug\TestVersion.exe.config
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\TestVersion\TestVersion\bin\Debug\TestVersion.exe
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\TestVersion\TestVersion\bin\Debug\TestVersion.pdb
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\TestVersion\TestVersion\obj\Debug\TestVersion.csproj.CoreCompileInputs.cache
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\TestVersion\TestVersion\obj\Debug\TestVersion.exe
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\TestVersion\TestVersion\obj\Debug\TestVersion.pdb
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\TestVersion\TestVersion\obj\Debug\TestVersion.csprojAssemblyReference.cache
