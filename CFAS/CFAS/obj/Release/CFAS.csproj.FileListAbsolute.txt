@@ -1,0 +1,14 @@
+C:\Users\Admin\Desktop\CFAS\CFAS\bin\Release\testGUI.exe.config
+C:\Users\Admin\Desktop\CFAS\CFAS\bin\Release\testGUI.exe
+C:\Users\Admin\Desktop\CFAS\CFAS\bin\Release\testGUI.pdb
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\DrawingTree.g.cs
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\testGUI_MarkupCompile.cache
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\testGUI_MarkupCompile.lref
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\DrawingTree.baml
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\testGUI.g.resources
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\CFAS.Main.resources
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\CFAS.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\CFAS.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\testGUI.exe
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\testGUI.pdb
+C:\Users\Admin\Desktop\CFAS\CFAS\obj\Release\CFAS.Properties.Resources.resources
