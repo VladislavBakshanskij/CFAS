@@ -20,7 +20,6 @@ namespace CFAS {
         public static List<List<Label>> chancies = new List<List<Label>>();
         public static List<Label> predictions = new List<Label>();
         public static List<Label> M = new List<Label>();
-        public static List<Label> pricies = new List<Label>();
         public static Label FullSum;
         public static Label Root;
 

@@ -178,6 +178,12 @@ namespace CFAS {
 
         private void Calculate() {
             if (company == null || bank == null || !company.CheckChance) return;
+
+            DrawingTree.M?.Clear();
+            DrawingTree.predictions?.Clear();
+            DrawingTree.forecastNii?.Clear();
+            DrawingTree.chancies?.Clear();
+            
             foreach (Company item in companies)
                 prodecties.Add(Predictions.GetPrediction(bank, item, Convert.ToSingle(this.textBox2.Text.Replace(".", ","))).Sort());
             for (int i = 0; i < prodecties[0].Length; ++i)
