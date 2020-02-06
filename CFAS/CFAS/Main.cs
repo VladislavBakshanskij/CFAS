@@ -19,15 +19,16 @@ namespace CFAS {
 
         private const float DECILMALS = 1000.0f;
 
-        private int iterator = 0;
+        private int mark = 0;
         private string textGroup;
         private string textGroupLabel;
         private FileReader fileReader;
         private FileWriter fileWriter;
         private List<List<string>> dataInput;
         private List<List<string>> listIteration;
+        private Dictionary<string, List<string>> data;
         private DrawingTree drawing;
-
+        
         public Main() {
             InitializeComponent();
             Init();
@@ -37,6 +38,10 @@ namespace CFAS {
             bank = null;
             companies = null;
             dataInput = null;
+            data = new Dictionary<string, List<string>>() {
+                ["chance"] = new List<string>(),
+                ["forecast"] = new List<string>(),
+            };
 
             companies = new List<Company>();
             prodecties = new List<float[]>();
@@ -82,31 +87,31 @@ namespace CFAS {
 
         private void button5_Click(object sender, EventArgs e) {
             try {
-                if (company == null || bank == null) {
-                    fileWriter.Clear();
+                List<string> listTemp = new List<string>();
 
-                    bank = new Bank() {
-                        money = Floor(Convert.ToSingle(dataGridView1.Rows[1].Cells[0].Value.ToString().Replace(".", ","))),
-                        precent = Floor(Convert.ToSingle(dataGridView1.Rows[2].Cells[0].Value.ToString().Replace(".", ","))),
-                        dateAvr = Floor(Convert.ToSingle(dataGridView1.Rows[3].Cells[0].Value.ToString().Replace(".", ",")))
-                    };
+                for (int i = 0; i < 4; i++)
+                    listTemp.Add(dataGridView2.Rows[i + 1].Cells[0].Value.ToString());
+                for (int i = 0; i < Company.Prices.Length; i++)
+                    Company.Prices[i] = Convert.ToSingle(this.dataGridView3.Rows[i].Cells[0].Value.ToString().Replace(".", ","));
 
-                    Company.CountProduct = Convert.ToSingle(this.textBox2.Text.Replace(".", ","));
+                Predictions.ForecastNii = (from item in data["forecast"] select Convert.ToSingle(item.Replace(".", ","))).ToArray();
+                Company.CountProduct = Convert.ToSingle(this.textBox2.Text.Replace(".", ","));
 
-                    for (int i = 0; i < Company.Prices.Length; i++) {
-                        Company.Prices[i] = Convert.ToSingle(this.dataGridView3.Rows[i].Cells[0].Value.ToString().Replace(".", ","));
-                        Predictions.ForecastNii[i] = Convert.ToSingle(listIteration[0][i].Replace(".", ","));
-                    }
+                data[mark == 0 ? "forecast" : "chance"] = listTemp;
+                bank = new Bank() {
+                    money = Floor(Convert.ToSingle(dataGridView1.Rows[1].Cells[0].Value.ToString().Replace(".", ","))),
+                    precent = Floor(Convert.ToSingle(dataGridView1.Rows[2].Cells[0].Value.ToString().Replace(".", ","))),
+                    dateAvr = Floor(Convert.ToSingle(dataGridView1.Rows[3].Cells[0].Value.ToString().Replace(".", ",")))
+                };
 
-                    company = new Company() {
-                        changes = new float[] {
-                            Convert.ToSingle(dataGridView2.Rows[1].Cells[0].Value.ToString().Replace(".", ",")),
-                            Convert.ToSingle(dataGridView2.Rows[2].Cells[0].Value.ToString().Replace(".", ",")),
-                            Convert.ToSingle(dataGridView2.Rows[3].Cells[0].Value.ToString().Replace(".", ",")),
-                        }
-                    };
-                }
+                List<float> changes = new List<float>();
+                for (int i = 0; i < 3; i++)
+                    changes.Add(Convert.ToSingle(data["chance"][i].Replace(".", ",")));
 
+                company = new Company() {
+                    changes = changes.ToArray()
+                };
+            
                 this.firstNode.Text = $"{textGroup} при {Predictions.ForecastNii[0]}";
                 this.secondNode.Text = $"{textGroup} при {Predictions.ForecastNii[1]}";
                 this.thirdNode.Text = $"{textGroup} при {Predictions.ForecastNii[2]}";
@@ -117,6 +122,8 @@ namespace CFAS {
             } catch (FormatException ex) {
                 MessageBox.Show("Ошибка:\n " + ex.Message);
                 return;
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
 
             this.secondNode.Visible = secondNodeMinChance.Visible = secondNodeSrChance.Visible = secondNodeMaxChance.Visible =
@@ -125,15 +132,16 @@ namespace CFAS {
             
             drawing = new DrawingTree();
             DrawingTree.draw = true;
-            
+
+            fileWriter.Clear();
             companies.Add(company);
+
             InsertChance();
             Calculate();
+            
             companies.Clear();
             prodecties.Clear();
             Predictions.M.Clear();
-            bank = null;
-            company = null;
         }
 
         private void InsertChance() {
@@ -163,21 +171,11 @@ namespace CFAS {
             });
         }
 
-        private float Floor(float value) {
-            char[] arr = value.ToString().ToCharArray();
-            int countNumber = 0;
-            bool isStart = false;
-
-            for (int i = 0; i < arr.Length; i++) {
-                if (arr[i] == ',') isStart = true;
-                if (isStart && arr[i] != '0') countNumber++;
-            }
-
-            return countNumber > 2 ? ((int)(value * DECILMALS)) / DECILMALS : value;
-        }
+        private float Floor(float value) => value > 0.009 ? (Convert.ToInt32(DECILMALS * value) / DECILMALS) : value;
 
         private void Calculate() {
-            if (company == null || bank == null || !company.CheckChance) return;
+            if (!company.CheckChance) throw new Exception("Сумма шансов должна быть 1!");
+            if (company == null || bank == null) return;
 
             DrawingTree.M?.Clear();
             DrawingTree.predictions?.Clear();
@@ -276,8 +274,7 @@ namespace CFAS {
             this.mountAvr.Text = Predictions.MountPrice.ToString();
             this.martPrice.Text = bank.money.ToString();
 
-            float prodectionMoney = bank.money + Convert.ToSingle(listIteration[0][listIteration[0].Count - 1].Replace(".", ","))
-                                + Convert.ToSingle(this.dataGridView2.Rows[dataGridView2.RowCount - 1].Cells[0].Value.ToString().Replace(".", ","));
+            float prodectionMoney = bank.money + Convert.ToSingle(data["forecast"][data["forecast"].Count - 1].Replace(".", ",")) + Convert.ToSingle(data["chance"][data["chance"].Count - 1].Replace(".", ","));
             this.notBuyProdectionLabel.Text = bank.money.ToString();
             this.fullSum.Text = prodectionMoney.ToString();
 
@@ -288,19 +285,19 @@ namespace CFAS {
         }
 
         private void Write() {
-            var lst = new List<string>();
+            var listTemp = new List<string>();
             foreach (float[] values in prodecties) {
-                lst = new List<string>();
+                listTemp = new List<string>();
                 foreach (float value in values)
-                    lst.Add(value.ToString());
-                fileWriter.AddProdection(lst);
+                    listTemp.Add(value.ToString());
+                fileWriter.AddProdection(listTemp);
             }
 
             foreach (Company c in companies) {
-                lst = new List<string>();
+                listTemp = new List<string>();
                 foreach (float chance in c.changes)
-                    lst.Add(chance.ToString());
-                fileWriter.AddChance(lst);
+                    listTemp.Add(chance.ToString());
+                fileWriter.AddChance(listTemp);
             }
 
             foreach (float forecast in Predictions.ForecastNii)
@@ -317,69 +314,57 @@ namespace CFAS {
         }
 
         private void add_bank_Click(object sender, EventArgs e) {
-            Button btn = (Button)sender;
-            if (iterator >= 1) return;
-            if (btn.Name.Equals(add_forecast.Name)) {
-                dataInput = new List<List<string>>();
-                listIteration = listIteration ?? new List<List<string>>();
-                var list = new List<string>();
-                
-                for (int i = 1; i < 5; ++i) {
-                    list.Add(dataGridView2.Rows[i].Cells[0].Value.ToString());
-                    dataGridView2.Rows[i].Cells[0].Value = "";
-                }
+            if (mark >= 1) return;
+            List<string> listTemp = new List<string>();
 
-                dataInput.Add(list);
-                listIteration.Clear();
-                listIteration.Add(list);
+            for (int i = 1; i < 5; ++i)
+                listTemp.Add(dataGridView2.Rows[i].Cells[0].Value.ToString());
+            for (int i = 0; i < 3; i++)
+                Predictions.ForecastNii[i] = Convert.ToSingle(listTemp[i + 1].Replace(".", ","));
 
-                for (int i = 0; i < 3; i++)
-                    Predictions.ForecastNii[i] = Convert.ToSingle(list[i + 1].Replace(".", ","));
-                
-                ++iterator;
-                WhereAmI(iterator + 1, dataInput.Count + 1);
-            }
+            data["forecast"] = listTemp;
+            ++mark;
+
+            WhereAmI(mark + 1, 2);
+            ClearDGV(2);
         }
 
         private void nextBank_Click(object sender, EventArgs e) => Next();
 
         private void Next() {
-            if (dataInput == null) return;
-            if (!IsNull(2) && iterator != dataInput.Count) {
-                var lst = new List<string>();
-                for (int i = 0; i < 4; ++i) {
-                    lst.Add(dataGridView2.Rows[i + 1].Cells[0].Value.ToString());
+            if (!IsNull(2) && mark != 1) {
+                List<string> list = new List<string>();
+                
+                for (int i = 0; i < 4; i++) {
+                    list.Add(dataGridView2.Rows[i + 1].Cells[0].Value.ToString());
+                    dataGridView2.Rows[i + 1].Cells[0].Value = data["chance"][i];
                 }
-                for (int i = 0; i < listIteration[iterator].Count; ++i) dataGridView2.Rows[i + 1].Cells[0].Value = listIteration[iterator][i];
-                dataGridView2.Rows[0].Cells[0].Value = "Прогноз";
-                listIteration.RemoveAt(iterator);
-                listIteration.Insert(iterator, lst);
-                WhereAmI(iterator + 2, listIteration.Count + 1);
-                ++iterator;
+
+                data["forecast"] = list;
+                WhereAmI(mark + 2, 2);
+                ++mark;
             } else MessageBox.Show("Вы дошли до конца списка!");
         }
 
         private void Prev() {
-            if (dataInput.Count > 0 && iterator == 0) MessageBox.Show("Вы дошли до начала списка!");
+            if (mark == 0) MessageBox.Show("Вы дошли до начала списка!");
             else if (!IsNull(2)) {
-                var lst = new List<string>();
+                List<string> listTemp = new List<string>();
+
                 for (int i = 0; i < 4; i++) {
-                    lst.Add(dataGridView2.Rows[i + 1].Cells[0].Value.ToString());
+                    listTemp.Add(dataGridView2.Rows[i + 1].Cells[0].Value.ToString());
+                    dataGridView2.Rows[i + 1].Cells[0].Value = data["forecast"][i];
                 }
-                for (int i = 0; i < listIteration[iterator - 1].Count; ++i) {
-                    dataGridView2.Rows[i + 1].Cells[0].Value = listIteration[iterator - 1][i];
-                }
-                dataGridView2.Rows[0].Cells[0].Value = "Прогноз";
-                listIteration.RemoveAt(iterator - 1);
-                listIteration.Insert(iterator - 1, lst);
-                WhereAmI(iterator, listIteration.Count + 1);
-                --iterator;
+
+                data["chance"] = listTemp;
+                WhereAmI(mark, 2);
+                --mark;
             }
         }
 
         private void prevBank_Click(object sender, EventArgs e) => Prev();
 
-        public void ClearDGV(int x) {
+        private void ClearDGV(int x) {
             switch (x) {
                 case 1:
                     foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -396,7 +381,7 @@ namespace CFAS {
             }
         }
 
-        public bool IsNull(int x) {
+        private bool IsNull(int x) {
             switch (x) {
                 case 1:
                     foreach (DataGridViewRow row in dataGridView1.Rows) {
@@ -448,15 +433,16 @@ namespace CFAS {
         private void SaveFile(string fileName) => fileWriter.Save(fileName);
 
         private void FillForm(List<string> data) {
-            if (data == null || data.Count == 0) return;
+            if (data is null || data.Count == 0) return;
             int position = 0;
-            textBox1.Text = data[0];
+            
+            textBox1.Text = data[position];
             ++position;
 
-            textBox2.Text = data[1];
+            textBox2.Text = data[position];
             ++position;
 
-            List<string> lst = new List<string>();
+            List<string> listTemp = new List<string>();
             dataInput = dataInput ?? new List<List<string>>();
             listIteration = listIteration ?? new List<List<string>>();
 
@@ -465,22 +451,28 @@ namespace CFAS {
                 dataGridView3.Rows[i].Cells[0].Value = data[position];
 
             //ForecastNii
-            for (int i = 0; i < 4; ++i, ++position) lst.Add(data[position]);
-            dataInput?.Add(lst);
-            ++iterator;
-            WhereAmI(iterator + 1, dataInput.Count + 1);
+            for (int i = 0; i < 4; ++i, ++position) 
+                listTemp.Add(data[position]);
+
+            this.data["forecast"] = listTemp;
+            ++mark;
+
+            WhereAmI(mark + 1, 2);
             ClearDGV(2);
 
             this.dataGridView2.Rows[0].Cells[0].Value = "Прогноз";
+
             //Chance Product
-            for (int i = 0; i < 3; ++i, ++position)
+            for (int i = 0; i < 3; ++i, ++position) {
                 this.dataGridView2.Rows[i + 1].Cells[0].Value = data[position];
+                this.data["chance"].Add(data[position]);
+            }
+
             this.dataGridView2.Rows[4].Cells[0].Value = "0";
 
             if (position < data.Count)
                 for (int i = 0; i < 3; ++i, ++position)
                     this.dataGridView1.Rows[i + 1].Cells[0].Value = data[position];
-            listIteration.AddRange(dataInput);
         }
 
         private void drawTree_Click(object sender, EventArgs e) {
@@ -488,7 +480,7 @@ namespace CFAS {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            if (drawing == null) {
+            if (drawing is null) {
                 drawing = new DrawingTree();
                 DrawingTree.draw = true;
             }

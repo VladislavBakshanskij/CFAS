@@ -10,7 +10,7 @@ namespace CFAS.ObjectPrj {
             get {
                 float sum = 0;
                 foreach (float item in changes) sum += item;
-                return Math.Floor(sum) >= 0.99f;
+                return sum > 0.98f && sum < 1.1f;
             }
         }
 

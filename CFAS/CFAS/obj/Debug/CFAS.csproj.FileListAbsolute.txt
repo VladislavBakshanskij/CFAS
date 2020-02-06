@@ -13,3 +13,17 @@ C:\Users\Admin\Desktop\CFAS\CFAS\obj\Debug\CFAS.Main.resources
 C:\Users\Admin\Desktop\CFAS\CFAS\obj\Debug\CFAS.csproj.GenerateResource.cache
 C:\Users\Admin\Desktop\CFAS\CFAS\obj\Debug\CFAS.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\CFAS\CFAS\obj\Debug\CFAS.Properties.Resources.resources
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\bin\Debug\testGUI.exe.config
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\bin\Debug\testGUI.exe
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\bin\Debug\testGUI.pdb
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\DrawingTree.g.cs
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\testGUI_MarkupCompile.cache
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\testGUI_MarkupCompile.lref
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\DrawingTree.baml
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\testGUI.g.resources
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS.Main.resources
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS.Properties.Resources.resources
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\testGUI.exe
+C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\testGUI.pdb
