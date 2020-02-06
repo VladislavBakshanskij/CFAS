@@ -24,8 +24,6 @@ namespace CFAS {
         private string textGroupLabel;
         private FileReader fileReader;
         private FileWriter fileWriter;
-        private List<List<string>> dataInput;
-        private List<List<string>> listIteration;
         private Dictionary<string, List<string>> data;
         private DrawingTree drawing;
         
@@ -37,7 +35,7 @@ namespace CFAS {
         private void Init() {
             bank = null;
             companies = null;
-            dataInput = null;
+
             data = new Dictionary<string, List<string>>() {
                 ["chance"] = new List<string>(),
                 ["forecast"] = new List<string>(),
@@ -443,8 +441,6 @@ namespace CFAS {
             ++position;
 
             List<string> listTemp = new List<string>();
-            dataInput = dataInput ?? new List<List<string>>();
-            listIteration = listIteration ?? new List<List<string>>();
 
             //Price
             for (int i = 0; i < 3; ++i, ++position)
