@@ -1,5 +1,3 @@
-using System;
-
 namespace CFAS.ObjectPrj {
     public class Company {
         public static float CountProduct;

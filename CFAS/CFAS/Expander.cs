@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CFAS {
+﻿namespace CFAS {
     public static class Expander {
         public static float[] Reverse(this float[] arr) {
             float[] array = (float[])arr.Clone();

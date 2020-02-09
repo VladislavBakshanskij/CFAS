@@ -80,7 +80,6 @@ namespace CFAS {
                 label5.Visible = mountAvr.Visible = martPrice.Visible = this.fullSumLabel.Visible = this.fullSum.Visible = false;
 
             this.add_forecast.Click += add_bank_Click;
-            this.button1.Click += drawTree_Click;
         }
 
         private void button5_Click(object sender, EventArgs e) {
@@ -339,7 +338,7 @@ namespace CFAS {
                 }
 
                 data["forecast"] = list;
-                WhereAmI(mark + 2, 2);
+                WhereAmI(mark + 1, 2);
                 ++mark;
             } else MessageBox.Show("Вы дошли до конца списка!");
         }
@@ -471,10 +470,6 @@ namespace CFAS {
                     this.dataGridView1.Rows[i + 1].Cells[0].Value = data[position];
         }
 
-        private void drawTree_Click(object sender, EventArgs e) {
-
-        }
-
         private void button1_Click(object sender, EventArgs e) {
             if (drawing is null) {
                 drawing = new DrawingTree();
@@ -488,7 +483,7 @@ namespace CFAS {
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e) {
             this.add_forecast.Click -= add_bank_Click;
-            this.button1.Click -= drawTree_Click;
+            this.button1.Click -= button1_Click;
         }
     }
 }

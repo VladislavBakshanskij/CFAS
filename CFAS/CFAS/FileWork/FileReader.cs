@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using Microsoft.Office.Interop.Excel;
-using CFAS.ObjectPrj;
 
 namespace CFAS.FileWork {
     public sealed class FileReader : FileWorker {
