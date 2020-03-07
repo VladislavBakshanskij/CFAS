@@ -7,7 +7,7 @@
     <ProjectGuid>{242C2B99-B9AF-4DD3-BD15-0CB46C071390}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>CFAS</RootNamespace>
-    <AssemblyName>testGUI</AssemblyName>
+    <AssemblyName>CFAS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -103,6 +103,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dollar.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
