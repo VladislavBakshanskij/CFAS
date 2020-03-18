@@ -27,3 +27,17 @@ C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS_MarkupCompile.lref
 C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS.g.resources
 C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS.exe
 C:\Users\Admin\Documents\GitHub\CFAS\CFAS\CFAS\obj\Debug\CFAS.pdb
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\bin\Debug\CFAS.exe.config
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\bin\Debug\CFAS.exe
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\bin\Debug\CFAS.pdb
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS.csprojAssemblyReference.cache
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\DrawingTree.g.cs
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS_MarkupCompile.cache
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS_MarkupCompile.lref
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\DrawingTree.baml
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS.g.resources
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS.Main.resources
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS.Properties.Resources.resources
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS.csproj.GenerateResource.cache
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS.exe
+C:\Users\Kirill Lechshenko\Desktop\CFAS\CFAS\CFAS\obj\Debug\CFAS.pdb

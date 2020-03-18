@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CFAS"
              mc:Ignorable="d" 
-             Title="CFAS" Height="500" Width="1080" Closed="Window_Closed"
-             Icon="pack://application:,,,/Resources/dollar.ico">
+             Title="CFAS" Height="500" Width="1080" Closed="Window_Closed">
     <Grid Name="grid1">
             
     </Grid>

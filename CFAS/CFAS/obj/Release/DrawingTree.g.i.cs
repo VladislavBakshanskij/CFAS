@@ -60,7 +60,7 @@ namespace CFAS {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/testGUI;component/drawingtree.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CFAS;component/drawingtree.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\DrawingTree.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

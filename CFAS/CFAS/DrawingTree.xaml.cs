@@ -336,10 +336,10 @@ namespace CFAS {
         private void DrawThreeLine(double centerX, double centerY, double lenNode, double angle, int index) {
             double x = centerX - Math.Cos(ToRadian(angle)) * lenNode;
             double y = centerY + Math.Sin(ToRadian(angle)) * lenNode;
-            DrawLine(centerX, centerY + OFFSET, x, y, Color.FromRgb(1, 1, 1));
+            DrawLine(centerX, centerY + OFFSET, x, y, Color.FromRgb(0, 255, 0));
             AddLabel(new Label() {
                 Content = predictions[0].Content,
-                Margin = new Thickness(x - OFFSET, y, 0, 0)
+                Margin = new Thickness(x - OFFSET, y, 0, 0),
             });
             AddLabel(new Label() {
                 Content = chancies[index][0].Content,
@@ -347,7 +347,7 @@ namespace CFAS {
                 RenderTransform = new RotateTransform(310)
             });
 
-            DrawLine(centerX, centerY + OFFSET, centerX, centerY + lenNode, Color.FromRgb(1, 1, 1));
+            DrawLine(centerX, centerY + OFFSET, centerX, centerY + lenNode, Color.FromRgb(255, 255, 0));
             AddLabel(new Label() {
                 Content = predictions[1].Content,
                 Margin = new Thickness(centerX - OFFSET, centerY + lenNode, 0, 0)
@@ -360,7 +360,7 @@ namespace CFAS {
 
             x = centerX + Math.Cos(ToRadian(angle)) * lenNode;
 
-            DrawLine(centerX, centerY + OFFSET, x, y, Color.FromRgb(1, 1, 1));
+            DrawLine(centerX, centerY + OFFSET, x, y, Color.FromRgb(255, 0, 0));
             AddLabel(new Label() {
                 Content = predictions[2].Content,
                 Margin = new Thickness(x - OFFSET, y, 0, 0)
