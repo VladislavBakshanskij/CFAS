@@ -7,7 +7,7 @@
 *.userprefs
 
 mono_crash.*
-
+**/res/
 [Dd]ebugPublic/
 [Rr]eleases/
 x64/

@@ -27,6 +27,9 @@ namespace CFAS {
 
         public DrawingTree() {
             InitializeComponent();
+            System.Drawing.Icon icon = Properties.Resources.dollar;
+            System.Drawing.Bitmap bitmap = icon.ToBitmap();
+            this.Icon = bitmap.ToImageSource();
             this.ResizeMode = ResizeMode.NoResize;
             FontSize = 12.5;
         }
@@ -43,6 +46,7 @@ namespace CFAS {
             }
         }
 
+        #region Left
         private void DrawLeftNode(double centerX, double centerY, double angle, double lenNode) {
             double leftNode = lenNode + 15;
             double leftX = centerX - Math.Cos(ToRadian(angle)) * leftNode - 80;
@@ -112,7 +116,9 @@ namespace CFAS {
                 Margin = new Thickness(leftX - OFFSET, leftCenterY + leftNode, 0, 0)
             });
         }
+        #endregion
 
+        #region Right
         private void DrawRightNode(double centerX, double centerY, double angle, double lenNode) {
             double rightNode = lenNode - 20;
             double rightX = centerX + Math.Cos(ToRadian(angle)) * rightNode + 80;
@@ -321,6 +327,7 @@ namespace CFAS {
                 }
             });
         }
+        #endregion 
 
         private void DrawTwoLine(double centerX, double centerY, double lenNode, double angle) {
             double x = centerX - Math.Cos(ToRadian(angle)) * lenNode;
@@ -382,17 +389,25 @@ namespace CFAS {
             });
         }
 
-        private void AddUIElement(UIElement el) => this.grid1.Children.Add(el);
+        private void AddUIElement(UIElement el) {
+            this.grid1.Children.Add(el);
+        }
 
         private void AddLabel(params Label[] labels) {
             if (labels is null) return;
-            foreach (Label label in labels)
+
+            foreach (Label label in labels) {
                 AddLabel(label);
+            }
         }
 
-        private void AddLabel(Label label) => AddUIElement(label);
+        private void AddLabel(Label label) {
+            AddUIElement(label);
+        }
 
-        private double ToRadian(double angle) => Math.PI * angle * 2 / 360.0;
+        private double ToRadian(double angle) {
+            return Math.PI * angle * 2 / 360.0;
+        }
 
         private void Window_Closed(object sender, EventArgs e) {
             this.grid1.Children.Clear();
