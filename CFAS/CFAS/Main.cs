@@ -271,7 +271,9 @@ namespace CFAS {
             this.mountAvr.Text = Predictions.MountPrice.ToString();
             this.martPrice.Text = bank.money.ToString();
 
-            float prodectionMoney = bank.money + Convert.ToSingle(data["forecast"][data["forecast"].Count - 1].Replace(".", ",")) + Convert.ToSingle(data["chance"][data["chance"].Count - 1].Replace(".", ","));
+            float prodectionMoney = bank.money + 
+                Convert.ToSingle(data["forecast"][data["forecast"].Count - 1].Replace(".", ",")) + 
+                Convert.ToSingle(data["chance"][data["chance"].Count - 1].Replace(".", ","));
             this.notBuyProdectionLabel.Text = bank.money.ToString();
             this.fullSum.Text = prodectionMoney.ToString();
 
@@ -338,8 +340,8 @@ namespace CFAS {
                 }
 
                 data["forecast"] = list;
-                WhereAmI(mark + 1, 2);
                 ++mark;
+                WhereAmI(mark + 1, 2);
             } else MessageBox.Show("Вы дошли до конца списка!");
         }
 

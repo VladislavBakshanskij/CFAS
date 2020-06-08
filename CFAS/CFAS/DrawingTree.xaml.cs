@@ -136,7 +136,9 @@ namespace CFAS {
             FullSum.Margin = new Thickness(rightX - 10, rightY - 5, 0, 0);
             AddLabel(new Label[] {
                 new Label() {
-                    Content = "Прогноз заказан " + Convert.ToString(Convert.ToSingle(FullSum.Content.ToString()) - Convert.ToSingle(Root.Content.ToString())),
+                    Content = "Прогноз заказан " + 
+                                    Convert.ToString(Convert.ToSingle(FullSum.Content.ToString()) - 
+                                    Convert.ToSingle(Root.Content.ToString())),
                     Margin = new Thickness(rightX - OFFSET * 8, rightY - OFFSET * 2, 0, 0),
                     RenderTransform = new RotateTransform(5),
                     FontSize = 13
@@ -173,7 +175,8 @@ namespace CFAS {
                 }
             });
 
-            DrawLine(rightX, rightY + OFFSET, rightX - Math.Cos(ToRadian(rightAngle)) * rightNode - 80, rightCenterY, Color.FromRgb(1, 1, 1));
+            DrawLine(rightX, rightY + OFFSET, rightX - Math.Cos(ToRadian(rightAngle)) * rightNode - 80, 
+                        rightCenterY, Color.FromRgb(1, 1, 1));
             AddLabel(new Label[] {
                 new Label() {
                     Content = Convert.ToString(
